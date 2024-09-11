@@ -9,6 +9,7 @@
                     :class="[
                         { 'is-danger': isDanger },
                         { 'is-warning': isWarning },
+                        { 'is-success': isSuccess },
                         { 'is-small': isSmall }]"
                     v-bind="inputBindings"
                     type="text"
@@ -53,6 +54,10 @@ export default {
             default: false,
         },
         isWarning: {
+            type: Boolean,
+            default: false,
+        },
+        isSuccess: {
             type: Boolean,
             default: false,
         },

@@ -16,9 +16,9 @@
                     :placeholder="placeholder">
                 <span class="icon is-small is-left"
                     v-if="!readonly">
-                    <fa icon="clock"
+                    <fa :icon="faClock"
                         v-if="timeOnly"/>
-                    <fa icon="calendar-alt"
+                    <fa :icon="faCalendarDays"
                         v-else/>
                 </span>
                 <span class="icon is-small is-right clear-button"
@@ -33,16 +33,18 @@
 
 <script>
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faClock, faCalendarAlt, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import CoreDatepicker from '../renderless/CoreDatepicker.vue';
-
-library.add(faClock, faCalendarAlt, faExclamationTriangle);
 
 export default {
     name: 'Datepicker',
 
     components: { Fa, CoreDatepicker },
+
+    data: () => ({
+        faCalendarDays,
+        faClock,
+    }),
 
     props: {
         isDanger: {
@@ -78,9 +80,3 @@ export default {
     },
 };
 </script>
-
-<style lang="scss">
-    .control.has-icons-right .clear-button {
-        pointer-events: all;
-    }
-</style>

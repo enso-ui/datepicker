@@ -7,8 +7,18 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { getActivePinia } from 'pinia';
 import Datepicker from './Datepicker.vue';
+
+const useStore = id => {
+    const store = getActivePinia()?._s?.get(id);
+
+    if (!store) {
+        throw new Error(`Missing Pinia store: ${id}`);
+    }
+
+    return store;
+};
 
 export default {
     name: 'EnsoDatepicker',
@@ -27,8 +37,12 @@ export default {
     },
 
     computed: {
-        ...mapState(['meta']),
-        ...mapGetters('preferences', ['lang']),
+        meta() {
+            return useStore('app').meta;
+        },
+        lang() {
+            return useStore('preferences').global.lang;
+        },
         format() {
             return this.altFormat
                 ?? (this.time ? this.meta.dateTimeFormat : this.meta.dateFormat);

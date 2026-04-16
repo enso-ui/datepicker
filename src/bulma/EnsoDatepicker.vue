@@ -7,18 +7,9 @@
 </template>
 
 <script>
-import { getActivePinia } from 'pinia';
+import { app as useApp } from '@enso-ui/ui/src/pinia/app';
+import { preferences as usePreferences } from '@enso-ui/ui/src/pinia/preferences';
 import Datepicker from './Datepicker.vue';
-
-const useStore = id => {
-    const store = getActivePinia()?._s?.get(id);
-
-    if (!store) {
-        throw new Error(`Missing Pinia store: ${id}`);
-    }
-
-    return store;
-};
 
 export default {
     name: 'EnsoDatepicker',
@@ -38,10 +29,10 @@ export default {
 
     computed: {
         meta() {
-            return useStore('app').meta;
+            return useApp().meta;
         },
         lang() {
-            return useStore('preferences').global.lang;
+            return usePreferences().global.lang;
         },
         format() {
             return this.altFormat

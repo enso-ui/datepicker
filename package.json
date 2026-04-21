@@ -1,8 +1,8 @@
 {
   "name": "@enso-ui/datepicker",
   "version": "3.1.4",
-  "description": "Vue Datepicker component based on Flatpickr",
-  "main": "index.js",
+  "description": "Bulma and renderless Flatpickr wrappers for Enso UI.",
+  "main": "bulma/index.js",
   "scripts": {
     "test": "vitest",
     "test:run": "vitest run"
